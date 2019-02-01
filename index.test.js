@@ -18,19 +18,19 @@ describe("testing for GET and POST server endpoints", () => {
       const response = await request(server).get("/games");
       const expected = [
         {
-          title: "Halo:CE",
-          genre: "FPS",
-          releaseYear: 2001
+          title: "Witcher III",
+          genre: "RPG",
+          releaseYear: 2015
         },
         {
-          title: "Halo 2",
-          genre: "FPS",
-          releaseYear: 2004
+          title: "Final Fantasy",
+          genre: "RPG",
+          releaseYear: 1987
         },
         {
-          title: "Halo 3",
-          genre: "FPS",
-          releaseYear: 2007
+          title: "Final Fantasy VII",
+          genre: "RPG",
+          releaseYear: 1997
         }
       ];
       expect(response.body).toEqual(expected);
@@ -40,8 +40,8 @@ describe("testing for GET and POST server endpoints", () => {
   describe("POST tests for /games", () => {
     it("should return a 422 status code if the object being sent is incomplete", async () => {
       const newGame = {
-        title: "Halo 4",
-        releaseYear: 2012
+        title: "Final Fantasy IX",
+        releaseYear: 2000
       };
       const response = await request(server)
         .post("/games")
@@ -50,9 +50,9 @@ describe("testing for GET and POST server endpoints", () => {
     });
     it("should return status 201 if the object has required fields", async () => {
       const newGame = {
-        title: "Halo 4", // required
-        genre: "FPS", // required
-        releaseYear: 2012 // not required
+        title: "Final Fantasy IX", // required
+        genre: "RPG", // required
+        releaseYear: 2000 // not required
       };
       const response = await request(server)
         .post("/games")
@@ -61,9 +61,9 @@ describe("testing for GET and POST server endpoints", () => {
     });
     it("should return JSON", async () => {
       const newGame = {
-        title: "Halo 4", // required
-        genre: "FPS", // required
-        releaseYear: 2012 // not required
+        title: "Final Fantasy IX", // required
+        genre: "RPG", // required
+        releaseYear: 2000 // not required
       };
       const response = await request(server)
         .post("/games")
@@ -73,9 +73,9 @@ describe("testing for GET and POST server endpoints", () => {
     });
     it("should return a message with the game title indicating the post was successful", async () => {
       const newGame = {
-        title: "Halo 4", // required
-        genre: "FPS", // required
-        releaseYear: 2012 // not required
+        title: "Final Fantasy IX", // required
+        genre: "RPG", // required
+        releaseYear: 2000 // not required
       };
       const response = await request(server)
         .post("/games")
