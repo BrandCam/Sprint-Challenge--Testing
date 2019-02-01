@@ -1,5 +1,5 @@
 const server = require("./api/server.js");
-
+const gamesList = require("./api/db.js");
 const request = require("supertest");
 
 describe("testing for GET and POST server endpoints", () => {
@@ -16,23 +16,7 @@ describe("testing for GET and POST server endpoints", () => {
     });
     it("should return the correct array of game objects", async () => {
       const response = await request(server).get("/games");
-      const expected = [
-        {
-          title: "Witcher III",
-          genre: "RPG",
-          releaseYear: 2015
-        },
-        {
-          title: "Final Fantasy",
-          genre: "RPG",
-          releaseYear: 1987
-        },
-        {
-          title: "Final Fantasy VII",
-          genre: "RPG",
-          releaseYear: 1997
-        }
-      ];
+      const expected = gamesList;
       expect(response.body).toEqual(expected);
       expect(Array.isArray(response.body)).toBe(true);
     });
@@ -81,7 +65,7 @@ describe("testing for GET and POST server endpoints", () => {
         .post("/games")
         .send(newGame);
       expect(response.body).toEqual({
-        message: `Final Fantasy IX added to games database.`
+        message: `${newGame.title} added to games database.`
       });
     });
   });
