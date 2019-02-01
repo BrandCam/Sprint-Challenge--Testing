@@ -81,7 +81,7 @@ describe("testing for GET and POST server endpoints", () => {
         .post("/games")
         .send(newGame);
       expect(response.body).toEqual({
-        message: `Halo 4 added to games database.`
+        message: `Final Fantasy IX added to games database.`
       });
     });
   });
