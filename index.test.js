@@ -57,15 +57,28 @@ describe("testing for GET and POST server endpoints", () => {
     });
     it("should return a message with the game title indicating the post was successful", async () => {
       const newGame = {
-        title: "Final Fantasy IX", // required
+        title: "new", // required
         genre: "RPG", // required
-        releaseYear: 2000 // not required
+        releaseYear: 1987 // not required
       };
       const response = await request(server)
         .post("/games")
         .send(newGame);
       expect(response.body).toEqual({
         message: `${newGame.title} added to games database.`
+      });
+    });
+    it("should return a message saying the game already exists", async () => {
+      const newGame = {
+        title: "Final Fantasy VII", // required
+        genre: "RPG", // required
+        releaseYear: 1997 // not required
+      };
+      const response = await request(server)
+        .post("/games")
+        .send(newGame);
+      expect(response.body).toEqual({
+        message: `${newGame.title} already exists`
       });
     });
   });
