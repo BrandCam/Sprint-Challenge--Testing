@@ -11,11 +11,13 @@ server.get("/games", (req, res) => {
 
 server.post("/games", (req, res) => {
   let { title, genre, releaseYear } = req.body;
+  let newGame = req.body;
   if (!title || !genre) {
     return res
       .status(422)
       .json({ error: "You must include a title and genre." });
   }
+  data.push(req.body);
   return res.status(201).json({ message: `${title} added to games database.` });
 });
 module.exports = server;
